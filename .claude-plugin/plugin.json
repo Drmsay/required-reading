@@ -1,6 +1,6 @@
 {
   "name": "required-reading",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Full-lifecycle engineering standards enforcement for Claude Code — 10 domains, checklists, and multi-agent team mode.",
   "author": {
     "name": "Drmsay",

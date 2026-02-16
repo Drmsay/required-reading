@@ -33,46 +33,19 @@ Claude defaults to matching whatever style the codebase uses, staying quiet abou
 
 ## Installation
 
-### Quick Install (core only)
+### Quick Install
 
 ```bash
 npx required-reading
 ```
 
-### With All Domain Specialists
-
-```bash
-npx required-reading --with-domains
-```
-
-### With Specific Domains
-
-```bash
-npx required-reading --domain=security --domain=testing
-```
-
-### Available Domains
-
-```
-software-engineering    architecture    testing
-security               devops          data-engineering
-delivery               product         ux
-leadership
-```
+Installs the core skill + all 10 domain specialists to `~/.claude/skills/`. Works on macOS, Linux, and Windows.
 
 ### Claude Code Plugin
 
 ```
 /plugin marketplace add Drmsay/Required-Reading
 /plugin install required-reading@required-reading
-```
-
-### Manual
-
-```bash
-mkdir -p ~/.claude/skills/required-reading
-curl -o ~/.claude/skills/required-reading/SKILL.md \
-  https://raw.githubusercontent.com/Drmsay/Required-Reading/master/skills/required-reading/SKILL.md
 ```
 
 ### Per-Project

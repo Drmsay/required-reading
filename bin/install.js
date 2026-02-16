@@ -4,25 +4,18 @@ const fs = require("fs");
 const path = require("path");
 const os = require("os");
 
-const args = process.argv.slice(2);
-
-const withDomains = args.includes("--with-domains");
-const coreOnly = args.includes("--core-only");
-const specificDomains = args
-  .filter((a) => a.startsWith("--domain="))
-  .map((a) => a.replace("--domain=", ""));
-
-const allDomains = [
-  "software-engineering",
-  "architecture",
-  "testing",
-  "security",
-  "devops",
-  "data-engineering",
-  "delivery",
-  "product",
-  "ux",
-  "leadership",
+const allSkills = [
+  "required-reading",
+  "required-reading-software-engineering",
+  "required-reading-architecture",
+  "required-reading-testing",
+  "required-reading-security",
+  "required-reading-devops",
+  "required-reading-data-engineering",
+  "required-reading-delivery",
+  "required-reading-product",
+  "required-reading-ux",
+  "required-reading-leadership",
 ];
 
 const skillsBase = path.join(os.homedir(), ".claude", "skills");
@@ -44,68 +37,30 @@ function installSkill(skillName) {
 }
 
 try {
-  // Always install core skill
-  console.log("\n  Installing required-reading v2.0.0...\n");
+  console.log("\n  Installing required-reading v2.0.1...\n");
 
-  const coreInstalled = installSkill("required-reading");
-  if (!coreInstalled) {
-    throw new Error("Core skill file not found.");
-  }
-  console.log("  [core] required-reading installed");
-
-  // Determine which domain specialists to install
-  let domainsToInstall = [];
-
-  if (withDomains) {
-    domainsToInstall = allDomains;
-  } else if (specificDomains.length > 0) {
-    domainsToInstall = specificDomains.filter((d) => {
-      if (!allDomains.includes(d)) {
-        console.error(`  Warning: Unknown domain "${d}". Skipping.`);
-        return false;
-      }
-      return true;
-    });
-  }
-
-  if (domainsToInstall.length > 0) {
-    console.log("");
-    let installed = 0;
-    for (const domain of domainsToInstall) {
-      const success = installSkill(`required-reading-${domain}`);
-      if (success) {
-        console.log(`  [domain] required-reading-${domain} installed`);
-        installed++;
-      }
+  let installed = 0;
+  for (const skill of allSkills) {
+    const success = installSkill(skill);
+    if (success) {
+      const label = skill === "required-reading" ? "core" : "domain";
+      console.log(`  [${label}] ${skill} installed`);
+      installed++;
     }
-    console.log(`\n  ${installed} domain specialist(s) installed.`);
   }
 
-  console.log("\n  Installation complete!\n");
+  if (installed === 0) {
+    throw new Error("No skill files found in package.");
+  }
+
+  console.log(`\n  ${installed} skill(s) installed.\n`);
   console.log("  Skill files copied to:");
-  console.log(`  ${skillsBase}/required-reading/\n`);
-
-  if (domainsToInstall.length > 0) {
-    console.log("  Domain specialists available for deep-dive reviews");
-    console.log("  and multi-agent Team Mode.\n");
-  }
-
+  console.log(`  ${skillsBase}/\n`);
   console.log("  Claude Code will now enforce professional engineering");
   console.log("  standards across all 10 domains whenever you write,");
   console.log("  review, design, or plan software.\n");
-
-  if (domainsToInstall.length === 0 && !coreOnly) {
-    console.log("  Tip: Install domain specialists for deep-dive reviews:");
-    console.log("  npx required-reading --with-domains        (all domains)");
-    console.log(
-      "  npx required-reading --domain=security     (specific domain)\n"
-    );
-    console.log("  Available domains:");
-    for (const d of allDomains) {
-      console.log(`    --domain=${d}`);
-    }
-    console.log("");
-  }
+  console.log("  Domain specialists are available for deep-dive reviews");
+  console.log("  and multi-agent Team Mode.\n");
 } catch (err) {
   console.error("\n  Installation failed:", err.message);
   console.error("\n  You can install manually:");
