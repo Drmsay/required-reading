@@ -1,17 +1,18 @@
 {
   "name": "required-reading",
-  "version": "1.0.5",
-  "description": "Design principles enforcement for Claude Code — transforms Claude from a permissive code generator into an opinionated design enforcer backed by foundational software design literature.",
+  "version": "2.0.0",
+  "description": "Full-lifecycle engineering standards enforcement for Claude Code — covers 10 domains from code quality to architecture, testing, security, DevOps, data, delivery, product, UX, and leadership. Includes checklists, multi-agent team mode, and domain specialist deep-dives.",
   "bin": {
     "required-reading": "bin/install.js"
   },
   "files": [
     "bin/install.js",
-    "skills/required-reading/SKILL.md"
+    "skills/*/SKILL.md"
   ],
   "keywords": [
     "claude",
     "claude-code",
+    "engineering-standards",
     "design-principles",
     "clean-code",
     "clean-architecture",
@@ -19,7 +20,17 @@
     "ddd",
     "design-patterns",
     "code-quality",
-    "software-architecture"
+    "software-architecture",
+    "testing",
+    "security",
+    "devops",
+    "data-engineering",
+    "product-management",
+    "ux",
+    "accessibility",
+    "technical-leadership",
+    "checklists",
+    "multi-agent"
   ],
   "author": "Drmsay",
   "license": "MIT",

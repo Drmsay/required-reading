@@ -1,7 +1,7 @@
 {
   "name": "required-reading",
-  "version": "1.0.5",
-  "description": "Design principles enforcement for Claude Code — transforms Claude from a permissive code generator into an opinionated design enforcer backed by foundational software design literature.",
+  "version": "2.0.0",
+  "description": "Full-lifecycle engineering standards enforcement for Claude Code — 10 domains, checklists, and multi-agent team mode.",
   "author": {
     "name": "Drmsay",
     "url": "https://github.com/Drmsay"
@@ -10,6 +10,7 @@
   "skills": "./skills/",
   "repository": "https://github.com/Drmsay/Required-Reading",
   "keywords": [
+    "engineering-standards",
     "design-principles",
     "clean-code",
     "clean-architecture",
@@ -17,6 +18,13 @@
     "ddd",
     "design-patterns",
     "code-quality",
-    "software-architecture"
+    "software-architecture",
+    "testing",
+    "security",
+    "devops",
+    "data-engineering",
+    "product-management",
+    "ux",
+    "technical-leadership"
   ]
 }

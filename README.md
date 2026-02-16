@@ -1,8 +1,8 @@
 # required-reading
 
-> Claude knows every design principle. This plugin makes it enforce them.
+> Claude knows every engineering principle. This plugin makes it enforce them.
 
-A Claude Code plugin that transforms Claude from a permissive code generator into an opinionated design principles enforcer — backed by foundational software design literature.
+A Claude Code plugin that transforms Claude from a permissive code generator into a **full-lifecycle engineering standards enforcer** — covering 10 domains, with checklists that ensure nothing gets skipped, and a multi-agent team mode that spins up domain specialists for thorough reviews.
 
 ## What It Does
 
@@ -10,34 +10,55 @@ Claude defaults to matching whatever style the codebase uses, staying quiet abou
 
 **required-reading** changes that. Once installed, Claude will:
 
-- **Enforce naming discipline** — no more `doStuff()`, `data`, `temp`, or `result`
-- **Apply SOLID, Clean Architecture, and DDD** as requirements, not suggestions
-- **Flag anti-patterns on sight** — God classes, anemic domain models, leaky abstractions, distributed monoliths
-- **Choose the right data model** for the access pattern, not just default to "throw it in Postgres"
-- **Design for failure** — circuit breakers, timeouts, bulkheads, idempotent operations
-- **Cite its sources** — every flag references the specific principle and its origin
+- **Enforce standards across 10 domains** — not just code quality, but architecture, testing, security, DevOps, data, delivery, product, UX, and leadership
+- **Run pre-delivery checklists** — triggered automatically by work type (writing code, reviewing, designing, deploying, etc.)
+- **Flag anti-patterns on sight** — God classes, anemic domain models, N+1 queries, hardcoded secrets, flaky tests, and dozens more
+- **Launch specialist subagents** — Team Mode spins up parallel domain experts for comprehensive multi-domain reviews
+- **Be pragmatic** — scope-appropriate enforcement, prototype-aware, performance-conscious, legacy-friendly
 
 ## What It Covers
 
-| Area | Enforced Principles |
-|------|-------------------|
-| **Code** | Naming, function design, CQS, error handling, formatting |
-| **Classes & Modules** | SOLID, deep modules, information hiding, composition over inheritance |
-| **Architecture** | Dependency Rule, bounded contexts, component boundaries |
-| **Domain Modeling** | Aggregates, entities, value objects, domain events, anti-corruption layers |
-| **Data** | Model selection by access pattern, consistency trade-offs, schema evolution |
-| **Distributed Systems** | Service boundaries, failure modes, replication, partitioning |
-| **Patterns** | Correct application of GoF, enterprise, and tactical DDD patterns |
+| Domain | Key Standards |
+|--------|--------------|
+| **Software Engineering** | Naming, function design, CQS, error handling, refactoring, legacy code strategy |
+| **Architecture & Design** | SOLID, deep modules, dependency rule, bounded contexts, DDD, design patterns |
+| **QA & Testing** | TDD, test pyramid, test design, test doubles, boundary analysis, no flaky tests |
+| **Security** | Input validation, output encoding, auth/authz, secrets management, STRIDE threat modeling |
+| **DevOps & Reliability** | CI/CD, IaC, deployment strategies, observability, SLOs, stability patterns |
+| **Data Engineering** | Data modeling, indexing, query optimization, pipelines, schema migrations, data quality |
+| **Delivery & Process** | Small batches, WIP limits, estimation, Definition of Done, tech debt visibility |
+| **Product Management** | Outcomes over outputs, validated learning, continuous discovery, story mapping |
+| **UX Engineering** | Usability, WCAG 2.1 AA, Core Web Vitals, atomic design, design tokens |
+| **Technical Leadership** | ADRs, psychological safety, intent-based leadership, capacity allocation |
 
 ## Installation
 
-### Quick Install
+### Quick Install (core only)
 
 ```bash
 npx required-reading
 ```
 
-Copies the skill file to `~/.claude/skills/required-reading/` — works on macOS, Linux, and Windows.
+### With All Domain Specialists
+
+```bash
+npx required-reading --with-domains
+```
+
+### With Specific Domains
+
+```bash
+npx required-reading --domain=security --domain=testing
+```
+
+### Available Domains
+
+```
+software-engineering    architecture    testing
+security               devops          data-engineering
+delivery               product         ux
+leadership
+```
 
 ### Claude Code Plugin
 
@@ -58,16 +79,69 @@ curl -o ~/.claude/skills/required-reading/SKILL.md \
 
 Copy the contents of `claude-md-snippet.md` into your project's `CLAUDE.md` for a condensed version scoped to a single project.
 
+## Checklists
+
+Checklists trigger automatically based on the type of work:
+
+| Work Type | Triggered By |
+|-----------|-------------|
+| `WRITE_CODE` | Writing new functions, classes, modules |
+| `MODIFY_CODE` | Fixing, changing, refactoring existing code |
+| `REVIEW_CODE` | Reviewing PRs, diffs, or code |
+| `DESIGN_SYSTEM` | Designing architecture, APIs, databases |
+| `WRITE_TESTS` | Writing or adding tests |
+| `DEPLOY_RELEASE` | Deploying, releasing, CI/CD work |
+| `DATA_WORK` | Schema, migrations, queries, pipelines |
+| `PLAN_FEATURE` | Planning, scoping, estimating |
+| `DESIGN_UI` | UI/UX design and component work |
+| `INCIDENT_RESPONSE` | Outages, incidents, production issues |
+
+Example checklist output:
+
+```markdown
+### Pre-Delivery Checklist: WRITE_CODE
+
+- [x] ENGINEERING: Names reveal intent, domain language used
+- [x] ENGINEERING: Functions do one thing, ≤3 params
+- [x] ARCHITECTURE: Dependencies point inward
+- [x] TESTING: Tests written for new behavior
+- [ ] SECURITY: **ACTION NEEDED** — User input passed to processOrder()
+      without validation. Add input validation before processing.
+- [x] DEVOPS: Configuration externalized
+
+**Result: 5/6 passed. 1 action item.**
+```
+
+## Team Mode
+
+For comprehensive reviews, Claude launches parallel domain-specialist subagents:
+
+```
+> "Review this PR with the full team"
+```
+
+Claude (as Tech Lead) will:
+1. Identify relevant domains
+2. Launch specialist subagents in parallel (Software Engineer, QA, Security, etc.)
+3. Each specialist analyzes from their domain's perspective
+4. Results synthesized into a unified Team Review Report
+
+Selective team launch matches specialists to the work type:
+- **Code PR** → Software Engineer + QA + Security
+- **System design** → Architect + Security + DevOps + Data + Product
+- **Feature planning** → Product + UX + Delivery + Architect
+- **Incident** → DevOps + Security + Data + Eng Manager
+
 ## Before & After
 
 | Prompt | Without | With required-reading |
 |--------|---------|----------------------|
-| Write a function | Vague names, too many params, hidden side effects | Intent-revealing names, ≤3 params, SRP, CQS |
-| Design a class | Matches existing style, even if it's a God class | SOLID enforced, deep module design, composition over inheritance |
-| Add a feature | Drops it wherever convenient | Respects architectural boundaries, bounded contexts, dependency direction |
-| Fix a bug | Fixes the bug | Fixes the bug AND flags surrounding design violations |
-| Review code | Generic feedback | Systematic evaluation against named principles with citations |
-| Design a system | Reasonable architecture | Quality attributes, fitness functions, data model analysis, failure mode design |
+| Write a function | Vague names, too many params | Intent-revealing names, ≤3 params, SRP, CQS, checklist |
+| Design a system | Reasonable architecture | Quality attributes, threat model, SLOs, data model, ADRs, checklist |
+| Fix a bug | Fixes the bug | Fixes it + flags violations + runs MODIFY_CODE checklist |
+| Review code | Generic feedback | 10-domain systematic review with severity ratings |
+| Write tests | Basic assertions | TDD, pyramid, boundary values, proper test doubles |
+| Deploy | Manual steps | Zero-downtime strategy, rollback plan, observability check |
 
 ## Pragmatism
 
@@ -77,8 +151,9 @@ required-reading is opinionated, not dogmatic.
 - **Prototype-aware** — explicitly labeled throwaway code gets looser enforcement
 - **Performance-conscious** — acknowledges that hot paths may trade readability for speed
 - **Legacy-friendly** — won't demand a full rewrite during incremental improvement
+- **Noise-free** — checklists surface real issues, not bureaucratic checkboxes
 
-To bypass enforcement: *"Skip enforcement, give me a quick version."* Claude will comply but note what it would change for production.
+To bypass: *"Skip enforcement"* or *"Quick and dirty mode."* Claude will comply but note what it would change for production.
 
 ## Project Structure
 
@@ -90,7 +165,27 @@ required-reading/
 ├── bin/
 │   └── install.js
 ├── skills/
-│   └── required-reading/
+│   ├── required-reading/
+│   │   └── SKILL.md                          (core — 10 domains, checklists, team mode)
+│   ├── required-reading-software-engineering/
+│   │   └── SKILL.md                          (deep-dive specialist)
+│   ├── required-reading-architecture/
+│   │   └── SKILL.md
+│   ├── required-reading-testing/
+│   │   └── SKILL.md
+│   ├── required-reading-security/
+│   │   └── SKILL.md
+│   ├── required-reading-devops/
+│   │   └── SKILL.md
+│   ├── required-reading-data-engineering/
+│   │   └── SKILL.md
+│   ├── required-reading-delivery/
+│   │   └── SKILL.md
+│   ├── required-reading-product/
+│   │   └── SKILL.md
+│   ├── required-reading-ux/
+│   │   └── SKILL.md
+│   └── required-reading-leadership/
 │       └── SKILL.md
 ├── claude-md-snippet.md
 ├── package.json
