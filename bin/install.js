@@ -4,8 +4,8 @@ const fs = require("fs");
 const path = require("path");
 const os = require("os");
 
-const skillDir = path.join(os.homedir(), ".claude", "skills", "design-principles");
-const skillSrc = path.join(__dirname, "..", "skills", "design-principles", "SKILL.md");
+const skillDir = path.join(os.homedir(), ".claude", "skills", "required-reading");
+const skillSrc = path.join(__dirname, "..", "skills", "required-reading", "SKILL.md");
 const skillDest = path.join(skillDir, "SKILL.md");
 
 try {

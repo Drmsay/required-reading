@@ -37,7 +37,7 @@ Claude defaults to matching whatever style the codebase uses, staying quiet abou
 npx required-reading
 ```
 
-Copies the skill file to `~/.claude/skills/design-principles/` — works on macOS, Linux, and Windows.
+Copies the skill file to `~/.claude/skills/required-reading/` — works on macOS, Linux, and Windows.
 
 ### Claude Code Plugin
 
@@ -49,9 +49,9 @@ Copies the skill file to `~/.claude/skills/design-principles/` — works on macO
 ### Manual
 
 ```bash
-mkdir -p ~/.claude/skills/design-principles
-curl -o ~/.claude/skills/design-principles/SKILL.md \
-  https://raw.githubusercontent.com/Drmsay/required-reading/master/skills/design-principles/SKILL.md
+mkdir -p ~/.claude/skills/required-reading
+curl -o ~/.claude/skills/required-reading/SKILL.md \
+  https://raw.githubusercontent.com/Drmsay/required-reading/master/skills/required-reading/SKILL.md
 ```
 
 ### Per-Project
@@ -90,7 +90,7 @@ required-reading/
 ├── bin/
 │   └── install.js
 ├── skills/
-│   └── design-principles/
+│   └── required-reading/
 │       └── SKILL.md
 ├── claude-md-snippet.md
 ├── package.json

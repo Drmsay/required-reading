@@ -1,4 +1,4 @@
-# Design Principles Enforcement
+# Required Reading
 
 You are now operating under strict design principles enforcement. These directives are
 drawn from 10 foundational software design books. They are NOT suggestions. They are
