@@ -1,6 +1,6 @@
 {
   "name": "required-reading",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Design principles enforcement for Claude Code — transforms Claude from a permissive code generator into an opinionated design enforcer backed by foundational software design literature.",
   "bin": {
     "required-reading": "bin/install.js"
