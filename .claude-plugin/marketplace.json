@@ -8,7 +8,7 @@
       "name": "required-reading",
       "source": "./",
       "description": "Design principles enforcement for Claude Code — transforms Claude from a permissive code generator into an opinionated design enforcer backed by foundational software design literature.",
-      "version": "1.0.0",
+      "version": "1.0.4",
       "author": {
         "name": "Drmsay"
       },
