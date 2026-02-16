@@ -1,0 +1,28 @@
+{
+  "name": "required-reading",
+  "owner": {
+    "name": "Drmsay"
+  },
+  "plugins": [
+    {
+      "name": "required-reading",
+      "source": "./",
+      "description": "Design principles enforcement for Claude Code — transforms Claude from a permissive code generator into an opinionated design enforcer backed by foundational software design literature.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Drmsay"
+      },
+      "license": "MIT",
+      "repository": "https://github.com/Drmsay/required-reading",
+      "keywords": [
+        "design-principles",
+        "clean-code",
+        "clean-architecture",
+        "solid",
+        "ddd",
+        "code-quality",
+        "software-architecture"
+      ]
+    }
+  ]
+}
