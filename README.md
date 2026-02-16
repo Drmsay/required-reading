@@ -42,7 +42,7 @@ Copies the skill file to `~/.claude/skills/required-reading/` — works on macOS
 ### Claude Code Plugin
 
 ```
-/plugin marketplace add Drmsay/required-reading
+/plugin marketplace add Drmsay/Required-Reading
 /plugin install required-reading@required-reading
 ```
 
@@ -51,7 +51,7 @@ Copies the skill file to `~/.claude/skills/required-reading/` — works on macOS
 ```bash
 mkdir -p ~/.claude/skills/required-reading
 curl -o ~/.claude/skills/required-reading/SKILL.md \
-  https://raw.githubusercontent.com/Drmsay/required-reading/master/skills/required-reading/SKILL.md
+  https://raw.githubusercontent.com/Drmsay/Required-Reading/master/skills/required-reading/SKILL.md
 ```
 
 ### Per-Project
